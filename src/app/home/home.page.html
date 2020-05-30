@@ -1,20 +1,77 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content color="dark">
+  <div class="uploadImage">
+    <ion-avatar class="ion-text-center" size="large" class="proImage">
+      <img [src]="this.proAvtr"  onError="this.src='https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
+    </ion-avatar>
+    <input type="file" #profilePhoto style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />
+    <div ion-fab class="profile-img" (click)="uploadProfilePicture()" >
+      Add Media
+    </div>
+  </div>
+  
+      
+  <div id="container" >
+    <form (ngSubmit)="logForm()" color="dark">
+      <ion-item color="dark">
+        <ion-label position="floating" >Description</ion-label>
+        <ion-textarea [(ngModel)]="todo.description" name="description"></ion-textarea>
+      </ion-item>
+      <ion-item color="dark">
+        <ion-label position="floating" class="ion-padding-bottom">Tag Users</ion-label>
+        <ion-button *ngFor="let recipient of recipients" color="warning" style="float: left;">
+          <span class="recipient_name">
+            {{recipient}}
+           </span>
+           <span class="recipient_remove " (click)="removeRecipient(recipient)">
+             X
+           </span>
+        </ion-button>
+        
+        <ion-input type="text" [(ngModel)]="todo.users" name="users" (keyup)="searchTagUser($event)" ></ion-input>
+      </ion-item>
+      <ion-list color="dark">
+        <ion-item *ngFor="let item of tagUsers" color="dark">
+          <p (click)="addTag(item)" >{{item}}</p>
+        </ion-item>
+      </ion-list>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <ion-item color="dark">
+        <ion-label position="floating" class="ion-padding-bottom" >Tag Companles</ion-label>
+        <ion-button *ngFor="let recipient of recipientsCom" class="recipient_tag" color="warning"> 
+          <span class="recipient_name">
+           {{recipient}}
+          </span>
+          <span class="recipient_remove " (click)="removeRecipient(recipient)">
+            X
+          </span>
+        </ion-button>
+        <ion-input type="text" [(ngModel)]="todo.companles" (keyup)="searchTagCompanles($event)" [ngModelOptions]="{standalone: true}"></ion-input>
+      </ion-item>
+      <ion-list color="dark">
+        <ion-item *ngFor="let item of tagCompanles" color="dark">
+          <p (click)="addCompanles(item)" >{{item}}</p>
+        </ion-item>
+      </ion-list>
+  
+      <ion-item color="dark">
+        <ion-label position="floating" class="ion-padding-bottom">Tag Marijuana Strain</ion-label>
+        <ion-button *ngFor="let recipient of recipientsStn" class="recipient_tag" color="warning"> 
+          <span class="recipient_name">
+           {{recipient}}
+          </span>
+          <span class="recipient_remove " (click)="removeRecipient(recipient)">
+            X
+          </span>
+        </ion-button>
+        <ion-input type="text" [(ngModel)]="todo.marijuanaStrain" [ngModelOptions]="{standalone: true}" (keyup)="searchTagMarijuanaStrain($event)" ></ion-input>
+      </ion-item>
+      <ion-list color="dark">
+        <ion-item *ngFor="let item of tagStn" color="dark" color="dark">
+          <p (click)="addStn(item)" >{{item}}</p>
+        </ion-item>
+      </ion-list>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      <ion-button type="submit" block color="warning" >Post</ion-button>
+    </form>
   </div>
 </ion-content>

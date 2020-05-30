@@ -1,11 +1,29 @@
 #container {
   text-align: center;
-
+  //background-color: black;
   position: absolute;
   left: 0;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.list-md {
+  background-color: #000000;
+}
+
+ion-content{
+  background-color: black;
+  color:#fff;
+}
+
+.proImage {
+  margin: auto;
+}
+.uploadImage {
+  text-align: center;
+  margin: auto;
+  margin-top: 39px;
 }
 
 #container strong {
