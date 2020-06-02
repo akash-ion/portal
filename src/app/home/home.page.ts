@@ -3,13 +3,15 @@ import { MediaService } from "../api/media.service";
 import { ActionSheetController, Platform, LoadingController, ToastController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import $ from "jquery";
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+
+  
   @ViewChild('profilePhoto') profilePhoto;
   tagUsers : any = [];
   tagCompanles : any = [];
@@ -49,22 +51,21 @@ export class HomePage {
 		});
   }
 
+
   
 
   searchTagUser(e) {
-	this.tagUsers = [];
-    this.media.getTagUser(this.todo.users).then(data => {
-            let item = data[0];
-            //console.log(item);
-			for (var key in item) {
-                
-                this.recipients.filter((note)=>{note !==item[key]}) 
-                const duplicateNote =  this.recipients.find((note) => note === item[key])
-                if (!duplicateNote) {
-                    this.tagUsers.push(item[key])
-                }
+    this.tagUsers = [];
+      this.media.getTagUser(this.todo.users).then(data => {
+        let item = data[0];
+        for (var key in item) {             
+            this.recipients.filter((note)=>{note !==item[key]}) 
+            const duplicateNote =  this.recipients.find((note) => note === item[key])
+            if (!duplicateNote) {
+                this.tagUsers.push(item[key])
             }
-		});
+        }
+      });
   }
 
   searchTagCompanles(e){
@@ -201,20 +202,20 @@ export class HomePage {
 
 		let loading = await this.loadingCtrl.create({
 			cssClass: 'my-custom-class',
-      message: 'Please wait...',
-      duration: 2000
+			message: 'Please wait...',
+			duration: 2000
 		});
 		loading.present();
 
 		 this.media.photoUploader(params).subscribe(async (resp) => {
 			loading.dismiss();	
-      this.profile.user_picture = resp;
+			this.profile.user_picture = resp;
 			localStorage.setItem('user_picture',this.profile.user_picture);	
 			const toast = await this.toastCtrl.create({
-        message: 'Your settings have been saved.',
-        duration: 2000
-      });
-      toast.present();
+				message: 'Your settings have been saved.',
+				duration: 2000
+			});
+			toast.present();
 
 		}, async (err) => {
 			loading.dismiss();		

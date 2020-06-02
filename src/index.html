@@ -13,14 +13,26 @@
   <meta name="msapplication-tap-highlight" content="no" />
 
   <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
-
+  <link href="assets/css/emojionearea.min.css" rel="stylesheet">
   <!-- add to homescreen for ios -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="assets/js/emojionearea.min.js"></script>
 </head>
 
 <body>
-  <app-root></app-root>
+  <app-root></app-root> 
+  <script>
+	$(document).ready(function() {
+		$("#emojionearea5").emojioneArea({
+		 	pickerPosition: "bottom"
+		});
+	});
+	
+  </script>
+  
+  
 </body>
 
 </html>

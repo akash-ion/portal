@@ -8,13 +8,12 @@
       Add Media
     </div>
   </div>
-  
-      
-  <div id="container" >
+    <div id="container" >
     <form (ngSubmit)="logForm()" color="dark">
       <ion-item color="dark">
         <ion-label position="floating" >Description</ion-label>
-        <ion-textarea [(ngModel)]="todo.description" name="description"></ion-textarea>
+        <ion-textarea [(ngModel)]="todo.description" name="description" id="emojionearea5"></ion-textarea>
+		    <div id="eMOcontainer"></div>
       </ion-item>
       <ion-item color="dark">
         <ion-label position="floating" class="ion-padding-bottom">Tag Users</ion-label>
